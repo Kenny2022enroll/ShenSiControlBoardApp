@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <item
+        android:id="@+id/action_save"
+        android:icon="@drawable/ic_save"
+        android:title="@string/action_save"
+        app:showAsAction="ifRoom" />
+    
+    <item
+        android:id="@+id/action_upload"
+        android:icon="@drawable/ic_upload"
+        android:title="@string/action_upload"
+        app:showAsAction="ifRoom" />
+    
+    <item
+        android:id="@+id/action_run"
+        android:icon="@drawable/ic_play_arrow"
+        android:title="@string/action_run"
+        app:showAsAction="ifRoom" />
+    
+    <item
+        android:id="@+id/action_format"
+        android:icon="@drawable/ic_format"
+        android:title="@string/action_format"
+        app:showAsAction="never" />
+        
+</menu>
+

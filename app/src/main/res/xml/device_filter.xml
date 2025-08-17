@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ESP32 development boards -->
+    <usb-device vendor-id="4292" product-id="60000" />  <!-- Espressif ESP32 -->
+    <usb-device vendor-id="4292" product-id="60002" />  <!-- Espressif ESP32-S2 -->
+    <usb-device vendor-id="4292" product-id="60003" />  <!-- Espressif ESP32-S3 -->
+    
+    <!-- Common USB-to-Serial chips -->
+    <usb-device vendor-id="1659" product-id="8963" />   <!-- CH340 -->
+    <usb-device vendor-id="4292" product-id="60000" />  <!-- CP2102 -->
+    <usb-device vendor-id="1027" product-id="24577" />  <!-- FTDI FT232 -->
+    
+    <!-- Generic CDC ACM devices -->
+    <usb-device class="2" subclass="2" protocol="1" />  <!-- CDC ACM -->
+</resources>
+

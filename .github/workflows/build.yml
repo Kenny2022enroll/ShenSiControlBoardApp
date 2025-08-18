@@ -41,7 +41,10 @@ jobs:
         export JAVA_HOME=/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.28-6/x64
         export PATH=$JAVA_HOME/bin:$PATH
         set -x
-        ./gradlew assembleDebug --stacktrace
+        ./gradlew assembleDebug --stacktrace --info
+      working-directory: .
+    - name: Check Build Output
+      run: find . -type f -name "*.apk"
       working-directory: .
     - name: Upload APK
       uses: actions/upload-artifact@v4

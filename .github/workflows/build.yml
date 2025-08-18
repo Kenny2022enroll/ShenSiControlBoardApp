@@ -33,27 +33,32 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
       working-directory: .
+    - name: Verify Gradle Wrapper
+      run: |
+        ls -l gradlew
+        ls -l gradle/wrapper/gradle-wrapper.jar
+      working-directory: .
     - name: Clean Build
-      env:
-        JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.28-6/x64
-      run: |
-        export PATH=$JAVA_HOME/bin:$PATH
-        set -x
-        /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.28-6/x64/bin/java -jar ./gradlew clean
-      working-directory: .
-    - name: Build with Gradle
-      env:
-        JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.28-6/x64
-      run: |
-        export PATH=$JAVA_HOME/bin:$PATH
-        set -x
-        /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.28-6/x64/bin/java -jar ./gradlew assembleDebug --stacktrace --info
-      working-directory: .
-    - name: Check APK Output
-      run: ls -l app/build/outputs/apk/debug/
-      working-directory: .
-    - name: Upload APK
-      uses: actions/upload-artifact@v4
-      with:
-        name: app-debug
-        path: app/build/outputs/apk/debug/
+    env:
+      JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.28-6/x64
+    run: |
+      export PATH=$JAVA_HOME/bin:$PATH
+      set -x
+      ./gradlew clean
+    working-directory: .
+  - name: Build with Gradle
+    env:
+      JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.28-6/x64
+    run: |
+      export PATH=$JAVA_HOME/bin:$PATH
+      set -x
+      ./gradlew assembleDebug --stacktrace --info
+    working-directory: .
+  - name: Check APK Output
+    run: ls -l app/build/outputs/apk/debug/
+    working-directory: .
+  - name: Upload APK
+    uses: actions/upload-artifact@v4
+    with:
+      name: app-debug
+      path: app/build/outputs/apk/debug/

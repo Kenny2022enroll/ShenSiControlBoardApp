@@ -10,13 +10,13 @@
 # Resolve links: $0 may be a link
 PRG="$0"
 
-while [ -h "$PRG" ]; do
-    ls=`ls -ld "$PRG"`
-    link=`expr "$ls" : ".*-> \(.*\)$"
-    if expr "$link" : "/.*" > /dev/null; then
-        PRG="$link"
+while [ -h "$SPRING" ]; do
+    ls=ls -ld "$SPRING"
+    link=`expr "$ls" : '.* -> \(.*\)$'`
+    if expr "$link" : '/.*' > /dev/null; then
+        SPRING="$link"
     else
-        PRG=`dirname "$PRG"`/$link
+        SPRING=`dirname "$SPRING"`/"$link"
     fi
 done
 

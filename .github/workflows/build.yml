@@ -34,18 +34,20 @@ jobs:
       run: chmod +x gradlew
       working-directory: .
     - name: Clean Build
+      env:
+        JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.28-6/x64
       run: |
-        export JAVA_HOME=/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.28-6/x64
         export PATH=$JAVA_HOME/bin:$PATH
         set -x
-        ./gradlew clean
+        /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.28-6/x64/bin/java -jar ./gradlew clean
       working-directory: .
     - name: Build with Gradle
+      env:
+        JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.28-6/x64
       run: |
-        export JAVA_HOME=/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.28-6/x64
         export PATH=$JAVA_HOME/bin:$PATH
         set -x
-        ./gradlew assembleDebug --stacktrace --info
+        /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.28-6/x64/bin/java -jar ./gradlew assembleDebug --stacktrace --info
       working-directory: .
     - name: Check APK Output
       run: ls -l app/build/outputs/apk/debug/

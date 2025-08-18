@@ -35,6 +35,9 @@ jobs:
       working-directory: .
     - name: Clean Build
       run: |
+        export JAVA_HOME=/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.28-6/x64
+        export PATH=$JAVA_HOME/bin:$PATH
+        set -x
         ./gradlew clean
       working-directory: .
     - name: Build with Gradle

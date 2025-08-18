@@ -33,8 +33,9 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
       working-directory: .
-    - name: Check APK Output
-      run: ls -l app/build/outputs/apk/debug/
+    - name: Clean Build
+      run: |
+        ./gradlew clean
       working-directory: .
     - name: Build with Gradle
       run: |
@@ -43,8 +44,8 @@ jobs:
         set -x
         ./gradlew assembleDebug --stacktrace --info
       working-directory: .
-    - name: Check Build Output
-      run: find . -type f -name "*.apk"
+    - name: Check APK Output
+      run: ls -l app/build/outputs/apk/debug/
       working-directory: .
     - name: Upload APK
       uses: actions/upload-artifact@v4

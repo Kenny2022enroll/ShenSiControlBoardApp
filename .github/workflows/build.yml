@@ -4,7 +4,7 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-  workflow_dispatch: # 添加手动触发
+  workflow_dispatch: # 允许手动触发
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,12 +15,9 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-    - name: Set JAVA_HOME
-      run: |
-        echo "JAVA_HOME=/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.28-6/x64" >> $GITHUB_ENV
     - name: Verify Java
       run: |
-        /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.28-6/x64/bin/java -version
+        java -version
         echo $JAVA_HOME
     - name: Cache Gradle packages
       uses: actions/cache@v4
@@ -40,18 +37,12 @@ jobs:
         ls -l gradle/wrapper/gradle-wrapper.jar
       working-directory: .
     - name: Clean Build
-      env:
-        JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.28-6/x64
       run: |
-        export PATH=$JAVA_HOME/bin:$PATH
         set -x
         ./gradlew clean
       working-directory: .
     - name: Build with Gradle
-      env:
-        JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.28-6/x64
       run: |
-        export PATH=$JAVA_HOME/bin:$PATH
         set -x
         ./gradlew assembleDebug --stacktrace --info
       working-directory: .

@@ -16,12 +16,10 @@ jobs:
         distribution: 'temurin'
     - name: Set JAVA_HOME
       run: |
-        echo "JAVA_HOME=$JAVA_HOME_11_X64" >> $GITHUB_ENV
-      env:
-        JAVA_HOME_11_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.28-6/x64
+        echo "JAVA_HOME=/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.28-6/x64" >> $GITHUB_ENV
     - name: Verify Java
       run: |
-        java -version
+        /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.28-6/x64/bin/java -version
         echo $JAVA_HOME
     - name: Cache Gradle packages
       uses: actions/cache@v4
@@ -37,6 +35,8 @@ jobs:
       working-directory: .
     - name: Build with Gradle
       run: |
+        export JAVA_HOME=/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.28-6/x64
+        export PATH=$JAVA_HOME/bin:$PATH
         set -x
         ./gradlew assembleDebug --stacktrace
       working-directory: .

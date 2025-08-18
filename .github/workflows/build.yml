@@ -27,21 +27,4 @@ jobs:
         path: |
           ~/.gradle/caches
           ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle', '**/*.gradle.kts', 'gradle-wrapper.properties') }}
-        restore-keys: |
-          ${{ runner.os }}-gradle-
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-      working-directory: .
-    - name: Build with Gradle
-      run: |
-        export JAVA_HOME=/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/11.0.28-6/x64
-        export PATH=$JAVA_HOME/bin:$PATH
-        set -x
-        ./gradlew assembleDebug --stacktrace
-      working-directory: .
-    - name: Upload APK
-      uses: actions/upload-artifact@v4
-      with:
-        name: app-debug
-        path: app/build/outputs/apk/debug/app-debug.apk
+        key: ${{ runner.os }}-

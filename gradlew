@@ -10,13 +10,13 @@
 # Resolve links: $0 may be a link
 PRG="$0"
 
-while [ -h "$SPRING" ]; do
-    ls=ls -ld "$SPRING"
-    link=`expr "$ls" : '.* -> \(.*\)$'`
-    if expr "$link" : '/.*' > /dev/null; then
-        SPRING="$link"
+while [ -h "$PRG" ]; do
+    ls=`ls -ld "$PRG"`
+    link=`expr "$ls" : ".*-> \(.*\)$"
+    if expr "$link" : "/.*" > /dev/null; then
+        PRG="$link"
     else
-        SPRING=`dirname "$SPRING"`/"$link"
+        PRG=`dirname "$PRG"`/$link
     fi
 done
 
@@ -30,11 +30,11 @@ else
     JAVACMD="java"
 fi
 
-if [ -x "$JAVACMD" ] ; then
-	echo "Error: JAVA_HOME is not defined correctly." >&2
-	echo " We cannot execute $JAVACMD" >&2
- exit 1
-fi 
+if [ ! -x "$JAVACMD" ] ; then
+  echo "Error: JAVA_HOME is not defined correctly." >&2
+  echo "  We cannot execute $JAVACMD" >&2
+  exit 1
+fi
 
 # OS specific support (must be 'true' or 'false').
 cygwin=false
